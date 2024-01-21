@@ -1,15 +1,21 @@
-# Quickly add / modify ssh configs : 1705811258
+# Quickly add / modify ssh configs : 1705812851
 
 function nnash() {
+  [[ -d $HOME/.ssh ]] || mkdir -m 700 $HOME/.ssh
+  [[ -d $HOME/.ssh/config.d ]] || (
+    mkdir -m 755 $HOME/.ssh/config.d
+    echo 'Include config.d/*' > $HOME/.ssh/config
+  )
+
   # Assign config in order if supplied
   NICKNAME=$1
   HOST=$2
   USERNAME=$3
 
   # Ensure each variable has a value with own username as default
-  [[ -n $NICKNAME ]] || read -p 'NICKNAME: ' NICKNAME
-  [[ -n $HOST ]]     || read -p 'HOSTNAME: ' HOST
-  [[ -n $USERNAME ]] || read -p "USERNAME: [${USER}] " USERNAME
+  [[ -n $HOST ]]     || read -p 'Hostname: '           HOST
+  [[ -n $NICKNAME ]] || read -p 'Host-Nickname: '      NICKNAME
+  [[ -n $USERNAME ]] || read -p "Username: [${USER}] " USERNAME
 
   templ8=/etc/xdg/templates/ssh.cfg
   leaf=$HOME/.ssh/config.d/${NICKNAME}
