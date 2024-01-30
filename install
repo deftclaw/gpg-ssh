@@ -10,5 +10,5 @@ cmds[1]="cp -r templates /etc/xdg/"
 # Run as current user, if fails try sudo
 for c in ${cmds[@]}
 do
-  `$c` || sudo `$c`
+  `"$c"` || `sudo "$c"`
 done
