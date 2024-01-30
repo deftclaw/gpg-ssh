@@ -1,4 +1,14 @@
 #!/bin/bash
 
-sudo cp ./{gpg_ssh.sh,nash.sh} /etc/profile.d/
-sudo cp -r templates /etc/xdg/
+# List of commands
+declare -a cmds
+
+# Copy the typical functions, copy the templates
+cmds[0]="cp ./{gpg_ssh.sh,nash.sh} /etc/profile.d/"
+cmds[1]="cp -r templates /etc/xdg/"
+
+# Run as current user, if fails try sudo
+for c in ${cmds[@]}
+do
+  `$c` || sudo `$c`
+done
