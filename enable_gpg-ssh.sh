@@ -14,3 +14,4 @@ keyID=`gpg -K --keyid-format=long|tail -n 4|head -n 1|awk -F' +|/' '{print $3}'`
 git config --global user.signingkey ${keyID}
 
 echo -e "\033[38;5;42mRemember to \`gpg --export-ssh-key\`\033[0m"
+echo -e "\033[38;5;42mRemember to add gpg key to github\033[0m"
