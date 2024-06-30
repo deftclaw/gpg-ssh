@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo cp ./{gpg_ssh.sh,nash.sh} /etc/profile.d/
-sudo cp -r templates /etc/xdg/
+sudo cp ./{gpg_ssh.sh,nash.sh} ~/.local/etc/profile.d/
+sudo cp -r templates $XDG_CONFIG_HOME/

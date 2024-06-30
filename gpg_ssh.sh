@@ -15,8 +15,8 @@ function gpg-get-id() {
 }
 
 function gpg-generate() {
-  templ8=/etc/xdg/templates/gpg.cfg
-  config=${TMP:-/tmp}/unattended
+  templ8=$XDG_CONFIG_HOME/templates/gpg.cfg
+  config=$HOME/unattended
   COMMENT=$2
   EMAIL=$3
   EXPIRE=$4
@@ -30,10 +30,10 @@ function gpg-generate() {
   [[ -n $EXPIRE ]]   || read -p 'Expiration: '       EXPIRE
 
   sed "s/COMMENT/${COMMENT:-example}/" $templ8 > $config
-  sed -i "s/EMAIL/${EMAIL:-name@example.com}/" $config
-  sed -i "s/EXPIRE/${EXPIRE:-20250101T000000}/" $config
-  sed -i "s/KEYLGNTH/${KEYLGNTH:-3072}/" $config
-  sed -i "s/REALNAME/${REALNAME:-Example Name}/" $config
+  sed -ie "s/EMAIL/${EMAIL:-name@example.com}/" $config
+  sed -ie "s/EXPIRE/${EXPIRE:-20250101T000000}/" $config
+  sed -ie "s/KEYLGNTH/${KEYLGNTH:-3072}/" $config
+  sed -ie "s/REALNAME/${REALNAME:-Example Name}/" $config
 
   gpg --expert --batch --full-generate-key $config
 }
