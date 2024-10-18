@@ -1,4 +1,4 @@
-# Quickly add / modify ssh configs : 1705812851
+# Quickly add / modify ssh configs : 
 
 function nnash() {
   [[ -d $HOME/.ssh ]] || mkdir -m 700 $HOME/.ssh
@@ -17,7 +17,7 @@ function nnash() {
   [[ -n $NICKNAME ]] || read -p 'Host-Nickname: '      NICKNAME
   [[ -n $USERNAME ]] || read -p "Username: [${USER}] " USERNAME
 
-  templ8=/etc/xdg/templates/ssh.cfg
+  templ8=$XH/templates/ssh.cfg
   leaf=$HOME/.ssh/config.d/${NICKNAME}
   sed "s/NICKNAME/${NICKNAME}/" $templ8 > $leaf
   sed -i "s/HOSTNAME/${HOST}/" $leaf

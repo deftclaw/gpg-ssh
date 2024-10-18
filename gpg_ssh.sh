@@ -1,4 +1,4 @@
-# Enable gpg-ssh SOCK : 1705808365
+# Enable gpg-ssh SOCK : 
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
   export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
@@ -15,7 +15,7 @@ function gpg-get-id() {
 }
 
 function gpg-generate() {
-  templ8=/etc/xdg/templates/gpg.cfg
+  templ8=$XH/templates/gpg.cfg
   config=${TMP:-/tmp}/unattended
   COMMENT=$2
   EMAIL=$3

@@ -1,4 +1,9 @@
 #!/bin/bash
 
-sudo cp ./{gpg_ssh.sh,nash.sh} /etc/profile.d/
-sudo cp -r templates /etc/xdg/
+[[ -z $XP ]] && export XP=$HOME/.local/etc/profile.d
+[[ -z $XH ]] && export XH=$HOME/.local/etc
+[[ -d $XP ]] || mkdir -pv $XP
+[[ -d $XH ]] || mkdir -pv $XH
+
+cp ./{gpg_ssh.sh,nash.sh} $XP/
+cp -r templates $XH/

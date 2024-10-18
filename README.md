@@ -10,8 +10,8 @@ _Shortcuts as described by [gpg-ssh-setup](https://gist.github.com/deftclaw/a0de
     - `pushd git-ssh`  
 3. Install the files: _script will ask for sudo, don't run as root_
     - `./install`  
-4. New functions have been installed to `/etc/profile.d` so reload them:  
-    - `. /etc/profile`  
+4. New functions have been installed to `~/.local/etc/profile.d` so reload them:  
+    - `. ~/.profile`  
 
 ## Usage:  
 1. Generate your gpg key: _Prompts will ask you for your details_  
