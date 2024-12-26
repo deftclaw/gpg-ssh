@@ -57,3 +57,25 @@ function gpg-search-delete() {
   gpg --batch --yes --delete-key "$key_id"        2>/dev/null \
     || error "Failed to delete: ${desc[@]}"
 }
+
+function gpg-restart() {
+  gpgconf --kill gpg-agent
+}
+
+function gpg-update() {
+  leaf=$1
+  up_key=$2
+
+  [[ -n $leaf ]]   || read -p 'Encrypted file to update (fullpath): ' leaf
+  [[ -n $up_key ]] || read -p 'New encryption key: ' up_key
+
+  gpg -d $leaf 2>/dev/null|gpg -ao ${leaf}.new -se -r $up_key
+
+  old=`gpg -d $leaf 2>/dev/null`
+  new=`gpg -d ${leaf}.new 2>/dev/null`
+
+  if [[ "$old" == "$new" ]]
+  then
+    mv "${leaf}.new" "$leaf" -v
+  fi
+}
