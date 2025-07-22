@@ -31,7 +31,7 @@ function gpg-generate() {
 
   sed "s/COMMENT/${COMMENT:-example}/" $templ8 > $config
   sed -i "s/EMAIL/${EMAIL:-name@example.com}/" $config
-  sed -i "s/EXPIRE/${EXPIRE:-20260101T000000}/" $config
+  sed -i "s/EXPIRE/${EXPIRE:-$((`date +%Y` + 1))0101T000000}/" $config
   sed -i "s/KEYLGNTH/${KEYLGNTH:-3072}/" $config
   sed -i "s/REALNAME/${REALNAME:-Example Name}/" $config
 
