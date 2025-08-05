@@ -79,3 +79,13 @@ function gpg-update() {
     mv "${leaf}.new" "$leaf" -v
   fi
 }
+
+function gpg-edit() {
+  key=`gpg --batch --pinentry=loopback --passphrase '' --list-packets "$1" 2>&1|head -n2|tail -n1|awk -F'[),(]' '{print $2}'`
+  stub=`mktemp`
+
+  gpg --batch --yes -o "$stub" -d "$1" &> /dev/null
+  $EDITOR -n "$stub"
+  gpg --batch --yes -ao "$1" -se -r "$key" "$stub" &>/dev/null
+  rm -f "$stub"
+}
