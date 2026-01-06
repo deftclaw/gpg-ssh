@@ -4,4 +4,4 @@
 key="$1"
 
 gpg -a --export-secret-keys "$key" > "${key}.pem.asc"
-gpg --export-ownertrust > ownertrust.txt
+gpg --export-ownertrust > "${key}.ownertrust"
